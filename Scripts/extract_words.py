@@ -9,8 +9,10 @@ import nltk
 from nltk.corpus import stopwords
 
 working_dir = os.path.dirname(os.path.abspath(__file__))
+title_path = "../Test Library/Allen B. Downey/Think Complexity (11)/"
+
 filename = "Think Complexity - Allen B. Downey.pdf"
-path = os.path.join(working_dir, filename)
+path = os.path.join(working_dir, title_path, filename)
 
 # files = []
 # for f in os.listdir(working_dir):
@@ -39,9 +41,10 @@ def convert_pdf_to_txt(path):
     return str
 
 
-
+print "Starting extraction..."
 book = convert_pdf_to_txt(path)
 
+print "Starting tokenization..."
 # 1. for each document of the corpus:
 # - tokenize
 tokens = nltk.wordpunct_tokenize(book)
@@ -50,9 +53,13 @@ text = nltk.Text(tokens)
 # - toLowerCase, trim
 words = [w.lower() for w in text]
 
-# - replace \ with space
+# - remove words with numbers
 
-words = [w.replace("\\", " ") for w in words]
+words = [w for w in words if w.isalpha()]
+
+# - remove excessively long words
+
+words = [w for w in words if len(w)<=20]
 
 # - delete all non printable characters with a regex
 # - trim again
@@ -70,17 +77,19 @@ words = [w.replace("\\", " ") for w in words]
 # 4. remove n-grams which appear just once or twice (unjustified but reasonable absolute cut-off, help to clean a lot!)
 
 # 5. remove stop words
+print "Removing stopwords..."
 # //there are many criteria here, but the main ones are:
 # - if it is a unigram, remove it if it is in the list of stopwords
 # - if it is a bi-gram or above, remove it IF some of its token belongs to the list of stopwords
 
 stopwords = set(stopwords.words('english')) ## O(1) instead of O(n)
-def word_filter(word):
-    return (word.isalpha() and
-            len(word) <= 20 and
-            word not in stopwords)
 
-newwords = [w for w in words if word_filter(w)]
+# def word_filter(word):
+#     return (word.isalpha() and          # kill words with numbers
+#             len(word) <= 20 and         # kill excessively long words
+#             word not in stopwords)      # kill English stopwords
+
+words = [w for w in words if w not in stopwords]
 
 # 6. keep only the n most frequent n-grams (n depends on the size of your corpus and your goals)
 
@@ -94,12 +103,15 @@ newwords = [w for w in words if word_filter(w)]
 
 # As you see, I found that the stopwords removal should arrive quite late in the steps, and in any case after the detection of n-grams. Also, I improved a lot my results by fine tuning my list of stopwords, and by creating several lists of stopwords. You should not hesitate to use a long list I believe, in my case I have excellent results with about 5500 stopwords. This is a topic in itself, we should discuss it some time!
 
+# capture print statistics
+text_freq = nltk.FreqDist(words)
+text_vocab = sorted(set(words))
 
-# vocab = sorted(set(newwords))
-# vocab = nltk.FreqDist(newwords)
+mostCommon= text_freq.most_common(10)
+print mostCommon
 
-from collections import Counter
-c = Counter(newwords)
+# from collections import Counter
+# c = Counter(words)
 
-print c
-import ipdb; ipdb.set_trace()
+# print c
+# import ipdb; ipdb.set_trace()
