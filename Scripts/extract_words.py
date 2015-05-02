@@ -7,11 +7,14 @@ from pdfminer.pdfpage import PDFPage
 from cStringIO import StringIO
 import nltk
 from nltk.corpus import stopwords
+import json
 
 working_dir = os.path.dirname(os.path.abspath(__file__))
-title_path = "../Test Library/Allen B. Downey/Think Complexity (11)/"
+#title_path = "../Test Library/Allen B. Downey/Think Complexity (11)/"
+title_path = "../Test Library/Pierre Geurts/Supervised Larning with Decision Tree-based methods in Computational and Systems Biology (4)/"
 
-filename = "Think Complexity - Allen B. Downey.pdf"
+#filename = "Think Complexity - Allen B. Downey.pdf"
+filename = "Supervised Larning with Decision Tree-base - Pierre Geurts.pdf"
 path = os.path.join(working_dir, title_path, filename)
 
 # files = []
@@ -40,9 +43,26 @@ def convert_pdf_to_txt(path):
     retstr.close()
     return str
 
+try:
+    title_dict = json.load(open('../data/file_data.json'))
+    print "title_dict imported"
+except IOError:  # 
+    print "No existing title dictionary, creating empty dictionary"
+    title_dict = {}
+
+title_dict["title"] = filename
+
 
 print "Starting extraction..."
-book = convert_pdf_to_txt(path)
+
+
+if "extract" in title_dict:
+    book = title_dict["extract"]
+else:
+    book = convert_pdf_to_txt(path)
+    title_dict["extract"] = book
+
+#print title_dict
 
 print "Starting tokenization..."
 # 1. for each document of the corpus:
@@ -101,14 +121,33 @@ words = [w for w in words if w not in stopwords]
 
 # 9. proceed with the rest of the text analysis!
 
-# As you see, I found that the stopwords removal should arrive quite late in the steps, and in any case after the detection of n-grams. Also, I improved a lot my results by fine tuning my list of stopwords, and by creating several lists of stopwords. You should not hesitate to use a long list I believe, in my case I have excellent results with about 5500 stopwords. This is a topic in itself, we should discuss it some time!
+# As you see, I found that the stopwords removal should arrive quite late in the steps, and in any case after the detection 
+# of n-grams. Also, I improved a lot my results by fine tuning my list of stopwords, and by creating several lists of stopwords. 
+# You should not hesitate to use a long list I believe, in my case I have excellent results with about 5500 stopwords. This is a 
+# topic in itself, we should discuss it some time!
 
-# capture print statistics
+title_dict["words"] = words
+
+# capture title statistics
+print "Calculating title statistics:\n"
 text_freq = nltk.FreqDist(words)
+title_dict["freq"] = text_freq
 text_vocab = sorted(set(words))
+title_dict["vocab"] = text_vocab
 
-mostCommon= text_freq.most_common(10)
-print mostCommon
+tenMostCommon= text_freq.most_common(10)
+print "Number of words:", len(words)
+print "Unique words", len(text_vocab), "\n"
+for w in tenMostCommon: print w
+
+
+with open('../data/file_data.json', 'w') as outfile:
+    json.dump(title_dict, outfile, 
+        sort_keys = True, 
+        indent = 4,
+        # ensure_ascii=False,
+        )
+
 
 # from collections import Counter
 # c = Counter(words)
