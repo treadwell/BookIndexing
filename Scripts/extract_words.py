@@ -1,14 +1,14 @@
 ﻿import os
+import json
 
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 from cStringIO import StringIO
-import nltk
 from nltk.corpus import stopwords
-import json
-import corpus
+import nltk
+
 
 working_dir = os.path.dirname(os.path.abspath(__file__))
 #title_path = "../Test Library/Allen B. Downey/Think Complexity (11)/"
