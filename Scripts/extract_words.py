@@ -137,6 +137,7 @@ text_pcnt = {word:text_freq[word] / float(text_size) for word in text_freq.keys(
 title_dict["freq"] = text_freq
 text_vocab = sorted(set(words))
 title_dict["vocab"] = text_vocab
+title_dict["percent"] = text_pcnt
 
 tenMostCommon= text_freq.most_common(10)
 print "Number of words:", text_size

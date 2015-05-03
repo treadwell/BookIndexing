@@ -4,3 +4,5 @@
 *.opf
 *.jpg
 *.png
+*.json
+*.sublime-project
