@@ -8,6 +8,7 @@ from cStringIO import StringIO
 import nltk
 from nltk.corpus import stopwords
 import json
+import corpus
 
 working_dir = os.path.dirname(os.path.abspath(__file__))
 #title_path = "../Test Library/Allen B. Downey/Think Complexity (11)/"
@@ -131,12 +132,14 @@ title_dict["words"] = words
 # capture title statistics
 print "Calculating title statistics:\n"
 text_freq = nltk.FreqDist(words)
+text_size = len(words)
+text_pcnt = {word:text_freq[word] / float(text_size) for word in text_freq.keys()}
 title_dict["freq"] = text_freq
 text_vocab = sorted(set(words))
 title_dict["vocab"] = text_vocab
 
 tenMostCommon= text_freq.most_common(10)
-print "Number of words:", len(words)
+print "Number of words:", text_size
 print "Unique words", len(text_vocab), "\n"
 for w in tenMostCommon: print w
 
