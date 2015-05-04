@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"key",
+				"keyword_list"
+			],
+			[
+				"corpu",
+				"corpus_size"
+			],
+			[
+				"text",
+				"text_size"
+			],
+			[
+				"corpus",
+				"corpus_freq_dict"
+			],
+			[
+				"text_",
+				"text_freq_dict"
+			],
+			[
+				"co",
+				"corpus_data"
+			],
+			[
+				"corpus_",
+				"corpus_size"
+			],
+			[
+				"title",
+				"title_dict"
+			],
+			[
+				"stop",
+				"stopword_test"
+			],
+			[
+				"unicode",
+				"unicode_test"
+			],
+			[
 				"convert",
 				"convert_pdf_to_txt"
 			],
@@ -296,10 +336,6 @@
 				"month_supply"
 			],
 			[
-				"title",
-				"title_name"
-			],
-			[
 				"titl",
 				"title_name"
 			],
@@ -478,42 +514,6 @@
 			[
 				"cumsu",
 				"cumsum_by_week"
-			],
-			[
-				"lates",
-				"latest_iso_week"
-			],
-			[
-				"new",
-				"new_dollars"
-			],
-			[
-				"plot",
-				"plot_dual"
-			],
-			[
-				"stat",
-				"statistic2"
-			],
-			[
-				"in_process",
-				"in_process_dollars"
-			],
-			[
-				"backlog_do",
-				"backlog_dollars"
-			],
-			[
-				"ship_",
-				"ship_dollars"
-			],
-			[
-				"pro",
-				"props"
-			],
-			[
-				"sched",
-				"sched_dollars"
 			]
 		]
 	},
@@ -523,7 +523,23 @@
 			"file": "Scripts/extract_words.py",
 			"settings":
 			{
-				"buffer_size": 1175,
+				"buffer_size": 5234,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Scripts/corpus_processing.py",
+			"settings":
+			{
+				"buffer_size": 981,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Scripts/text_processing.py",
+			"settings":
+			{
+				"buffer_size": 1497,
 				"line_ending": "Unix"
 			}
 		}
@@ -581,10 +597,13 @@
 	"expanded_folders":
 	[
 		"/Users/kbrooks/Documents/Book indexing project",
-		"/Users/kbrooks/Documents/Book indexing project/Test Library"
+		"/Users/kbrooks/Documents/Book indexing project/Scripts"
 	],
 	"file_history":
 	[
+		"/Users/kbrooks/Documents/Book indexing project/Scripts/processing.py",
+		"/Users/kbrooks/Documents/Book indexing project/Scripts/corpus.py",
+		"/Users/kbrooks/Documents/Book indexing project/Scripts/extract_words.py",
 		"/Users/kbrooks/Documents/CS7641 Machine Learning/Midterm/kbrooks31-midterm.tex",
 		"/Users/kbrooks/Documents/CS7641 Machine Learning/Assignment 4/kbrooks31-Assign 4.tex",
 		"/Users/kbrooks/Documents/CS7641 Machine Learning/Assignment 4/README.txt",
@@ -848,7 +867,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -857,15 +876,45 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1175,
+						"buffer_size": 5234,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1175,
-								1175
+								288,
+								288
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 551.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Scripts/corpus_processing.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 981,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								116,
+								116
 							]
 						],
 						"settings":
@@ -875,7 +924,36 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 184.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Scripts/text_processing.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1497,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								273,
+								273
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 212.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
