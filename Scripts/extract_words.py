@@ -7,8 +7,8 @@ from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 from cStringIO import StringIO
 from nltk.corpus import stopwords
+from nltk.corpus import words as corpus_words
 import nltk
-
 
 working_dir = os.path.dirname(os.path.abspath(__file__))
 #title_path = "../Test Library/Allen B. Downey/Think Complexity (11)/"
@@ -44,6 +44,29 @@ def convert_pdf_to_txt(path):
     retstr.close()
     return str
 
+def filter_English_words(test_word_file, corpus_word_file, number_invalid_words):
+    '''Filter a word file against a known corpus of English words.  Returns the valid 
+    words for further processing and the top n invalid words to 
+    determine how good the corpus_word_file is.  If it returns a high frequency of 
+    recognizable English words, a better corpus might be needed.  This return loop 
+    may be modified in the future to directly update the base English corpus.'''
+
+    English_words = [w.lower() for w in corpus_word_file]  # make all of the words lower case
+
+    English_words = set(English_words)  # eliminate duplicates and turn them into a set for faster processing
+
+    valid_words =  [w for w in test_word_file if w in English_words]
+
+    invalid_words =  [w for w in test_word_file if w not in English_words]  
+
+    invalid_text_freq = nltk.FreqDist(invalid_words)  # calculate frequencies
+        
+    n_invalid_words = invalid_text_freq.most_common(number_invalid_words)
+
+    n_invalid_words = [word for word, count in n_invalid_words]
+
+    return valid_words, n_invalid_words
+
 try:
     title_dict = json.load(open('../data/file_data.json'))
     print "title_dict imported"
@@ -77,6 +100,10 @@ words = [w.lower() for w in text]
 # - remove words with numbers
 
 words = [w for w in words if w.isalpha()]
+
+# - remove non-English words
+
+words, invalid_words = filter_English_words(words, corpus_words.words(), 10)
 
 # - remove excessively long words
 
@@ -158,3 +185,13 @@ with open('../data/file_data.json', 'w') as outfile:
 
 # print c
 # import ipdb; ipdb.set_trace()
+
+if __name__ == "__main__":
+
+    # Test for filter_English_words
+    test_word_file = [u'learning', u'decision', u'tree', u'based', u'computational']
+    corpus_word_file = [u'this', u'is', u'a', u'cat', u'computational']
+    valid_words, invalid_words = filter_English_words(test_word_file, corpus_word_file, 10)
+    assert valid_words == [u'computational']
+    assert invalid_words == [u'based', u'decision', u'tree', u'learning']
+
