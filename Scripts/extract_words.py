@@ -12,19 +12,13 @@ import nltk
 
 
 
-# files = []
-# for f in os.listdir(working_dir):
-#     if f.endswith(".pdf"):
-#         files.append(f)
-
-
-def convert_pdf_to_txt(path):
+def convert_pdf_to_txt(full_path):
     rsrcmgr = PDFResourceManager()
     retstr = StringIO()
     codec = 'utf-8'
     laparams = LAParams()
     device = TextConverter(rsrcmgr, retstr, codec=codec, laparams=laparams)
-    fp = file(path, 'rb')
+    fp = file(full_path, 'rb')
     interpreter = PDFPageInterpreter(rsrcmgr, device)
     password = ""
     maxpages = 0
@@ -61,9 +55,9 @@ def filter_English_words(test_word_file, corpus_word_file, number_invalid_words)
 
     return valid_words, n_invalid_words
 
-def analyze_title(title_name, path):
+def analyze_title(full_path, filename):
     try:
-        title_dict = json.load(open('../data/' + title_name + '.json'))
+        title_dict = json.load(open('../data/' + filename + '.json'))
         print "title_dict imported"
     except IOError:  # 
         print "No existing title dictionary, creating empty dictionary"
@@ -78,7 +72,7 @@ def analyze_title(title_name, path):
     if "extract" in title_dict:
         book = title_dict["extract"]
     else:
-        book = convert_pdf_to_txt(path)
+        book = convert_pdf_to_txt(full_path)
         title_dict["extract"] = book
 
     #print title_dict
@@ -167,7 +161,7 @@ def analyze_title(title_name, path):
     for w in tenMostCommon: print w
 
 
-    with open('../data/' + title_name + '.json', 'w') as outfile:
+    with open('../data/' + filename + '.json', 'w') as outfile:
         json.dump(title_dict, outfile, 
             sort_keys = True, 
             indent = 4,
@@ -190,20 +184,29 @@ if __name__ == "__main__":
     assert valid_words == [u'computational']
     assert invalid_words == [u'based', u'decision', u'tree', u'learning']
 
-    working_dir = os.path.dirname(os.path.abspath(__file__))
+    #working_dir = os.path.dirname(os.path.abspath(__file__))
 
-    library_dict = {'title1':
-                            {'filename': "Think Complexity - Allen B. Downey.pdf",
-                            'title_path' :"../Test Library/Allen B. Downey/Think Complexity (11)"},
-                    'title2':
-                            {'filename' : "Supervised Larning with Decision Tree-base - Pierre Geurts.pdf", 
-                            'title_path' : "../Test Library/Pierre Geurts/Supervised Larning with Decision Tree-based methods in Computational and Systems Biology (4)/"}
-                            }  
-    
-    for title in library_dict.keys():
-        filename = library_dict[title]["filename"]
-        title_path = library_dict[title]["title_path"]
-        path = os.path.join(working_dir, title_path, filename)
+    #library_list = [("../Test Library/Allen B. Downey/Think Complexity (11)", "Think Complexity - Allen B. Downey.pdf"),
+    #               ("../Test Library/Pierre Geurts/Supervised Larning with Decision Tree-based methods in Computational and Systems Biology (4)/", "Supervised Larning with Decision Tree-base - Pierre Geurts.pdf")]
+                  
+    library_list = [('/Users/kbrooks/Documents/Book indexing project/Test Library/Abhijat Vichare/Theory of Computation Lecture Notes, August 2005 (9)', 'Theory of Computation Lecture Notes, Augus - Abhijat Vichare.pdf'), 
+                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Allen B. Downey/Think Complexity (11)', 'Think Complexity - Allen B. Downey.pdf'), 
+                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Allen B. Downey/Think OS_ A Brief Introduction to Operating Systems (12)', 'Think OS_ A Brief Introduction to Operatin - Allen B. Downey.pdf'), 
+                    #('/Users/kbrooks/Documents/Book indexing project/Test Library/Carol Zander/Turing Machine Examples (14)', 'Turing Machine Examples - Carol Zander.pdf'), 
+                    #('/Users/kbrooks/Documents/Book indexing project/Test Library/Charles Brubaker/Supplemental Linear Programming and Duality problems (5)', 'Supplemental Linear Programming and Dualit - Charles Brubaker.pdf'), 
+                    #('/Users/kbrooks/Documents/Book indexing project/Test Library/Charles Brubaker/Supplemental Maximum Flow Exercises (6)', 'Supplemental Maximum Flow Exercises - Charles Brubaker.pdf'), 
+                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Cosma Shalizi/split, apply, combine with plyr (1)', 'split, apply, combine with plyr - Cosma Shalizi.pdf'), 
+                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Ding-Zhu Du/Theory of Computational Complexity, 2e (10)', 'Theory of Computational Complexity, 2e - Ding-Zhu Du.pdf'), 
+                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Donald Knuth/The Tex Book (7)', 'The Tex Book - Donald Knuth.pdf'), 
+                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Harold Abelson/Structure and Interpretation of Computer Programs (2)', 'Structure and Interpretation of Computer P - Harold Abelson.pdf'), 
+                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Harold Abelson/Structure and Interpretation of Computer Programs, 2e (3)', 'Structure and Interpretation of Computer P - Harold Abelson.pdf'), 
+                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Mitsunori Ogihara/Theory and Applications of Models of Computation_ 8th Annual Conference, TAMC 2011, Tokyo, Japan (8)', 'Theory and Applications of Models of Compu - Mitsunori Ogihara.pdf'), 
+                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Pierre Geurts/Supervised Larning with Decision Tree-based methods in Computational and Systems Biology (4)', 'Supervised Larning with Decision Tree-base - Pierre Geurts.pdf'), 
+                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Roger Zelazny/Trumps of Doom (13)', 'Trumps of Doom - Roger Zelazny.pdf')]
+
+    for path, filename in library_list:
+        full_path = os.path.join(path, filename)
+        print full_path
         #print path
-        analyze_title(filename, path)
+        analyze_title(full_path, filename)
 
