@@ -168,6 +168,20 @@ def analyze_title(full_path, filename):
             # ensure_ascii=False,
             )
 
+def locate_files(extension, path_to_library):
+    '''Finds all files with specified extension in a defined path 
+    and returns a list of tuples with paths and filenames'''
+
+    search_list = []
+
+    for root, dirs, files in os.walk(path_to_library):
+        for file in files:
+            if file.endswith(".pdf"):
+                print root
+                print file
+                print(os.path.join(root, file))
+                search_list.append((root, file))
+    return search_list
 
 # from collections import Counter
 # c = Counter(words)
@@ -189,24 +203,36 @@ if __name__ == "__main__":
     #library_list = [("../Test Library/Allen B. Downey/Think Complexity (11)", "Think Complexity - Allen B. Downey.pdf"),
     #               ("../Test Library/Pierre Geurts/Supervised Larning with Decision Tree-based methods in Computational and Systems Biology (4)/", "Supervised Larning with Decision Tree-base - Pierre Geurts.pdf")]
                   
-    library_list = [('/Users/kbrooks/Documents/Book indexing project/Test Library/Abhijat Vichare/Theory of Computation Lecture Notes, August 2005 (9)', 'Theory of Computation Lecture Notes, Augus - Abhijat Vichare.pdf'), 
-                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Allen B. Downey/Think Complexity (11)', 'Think Complexity - Allen B. Downey.pdf'), 
-                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Allen B. Downey/Think OS_ A Brief Introduction to Operating Systems (12)', 'Think OS_ A Brief Introduction to Operatin - Allen B. Downey.pdf'), 
-                    #('/Users/kbrooks/Documents/Book indexing project/Test Library/Carol Zander/Turing Machine Examples (14)', 'Turing Machine Examples - Carol Zander.pdf'), 
-                    #('/Users/kbrooks/Documents/Book indexing project/Test Library/Charles Brubaker/Supplemental Linear Programming and Duality problems (5)', 'Supplemental Linear Programming and Dualit - Charles Brubaker.pdf'), 
-                    #('/Users/kbrooks/Documents/Book indexing project/Test Library/Charles Brubaker/Supplemental Maximum Flow Exercises (6)', 'Supplemental Maximum Flow Exercises - Charles Brubaker.pdf'), 
-                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Cosma Shalizi/split, apply, combine with plyr (1)', 'split, apply, combine with plyr - Cosma Shalizi.pdf'), 
-                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Ding-Zhu Du/Theory of Computational Complexity, 2e (10)', 'Theory of Computational Complexity, 2e - Ding-Zhu Du.pdf'), 
-                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Donald Knuth/The Tex Book (7)', 'The Tex Book - Donald Knuth.pdf'), 
-                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Harold Abelson/Structure and Interpretation of Computer Programs (2)', 'Structure and Interpretation of Computer P - Harold Abelson.pdf'), 
-                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Harold Abelson/Structure and Interpretation of Computer Programs, 2e (3)', 'Structure and Interpretation of Computer P - Harold Abelson.pdf'), 
-                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Mitsunori Ogihara/Theory and Applications of Models of Computation_ 8th Annual Conference, TAMC 2011, Tokyo, Japan (8)', 'Theory and Applications of Models of Compu - Mitsunori Ogihara.pdf'), 
-                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Pierre Geurts/Supervised Larning with Decision Tree-based methods in Computational and Systems Biology (4)', 'Supervised Larning with Decision Tree-base - Pierre Geurts.pdf'), 
-                    ('/Users/kbrooks/Documents/Book indexing project/Test Library/Roger Zelazny/Trumps of Doom (13)', 'Trumps of Doom - Roger Zelazny.pdf')]
+    # library_list = [('/Users/kbrooks/Documents/Book indexing project/Test Library/Abhijat Vichare/Theory of Computation Lecture Notes, August 2005 (9)', 'Theory of Computation Lecture Notes, Augus - Abhijat Vichare.pdf'), 
+    #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Allen B. Downey/Think Complexity (11)', 'Think Complexity - Allen B. Downey.pdf'), 
+    #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Allen B. Downey/Think OS_ A Brief Introduction to Operating Systems (12)', 'Think OS_ A Brief Introduction to Operatin - Allen B. Downey.pdf'), 
+    #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Carol Zander/Turing Machine Examples (14)', 'Turing Machine Examples - Carol Zander.pdf'), 
+    #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Charles Brubaker/Supplemental Linear Programming and Duality problems (5)', 'Supplemental Linear Programming and Dualit - Charles Brubaker.pdf'), 
+    #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Charles Brubaker/Supplemental Maximum Flow Exercises (6)', 'Supplemental Maximum Flow Exercises - Charles Brubaker.pdf'), 
+    #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Cosma Shalizi/split, apply, combine with plyr (1)', 'split, apply, combine with plyr - Cosma Shalizi.pdf'), 
+    #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Ding-Zhu Du/Theory of Computational Complexity, 2e (10)', 'Theory of Computational Complexity, 2e - Ding-Zhu Du.pdf'), 
+    #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Donald Knuth/The Tex Book (7)', 'The Tex Book - Donald Knuth.pdf'), 
+    #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Harold Abelson/Structure and Interpretation of Computer Programs (2)', 'Structure and Interpretation of Computer P - Harold Abelson.pdf'), 
+    #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Harold Abelson/Structure and Interpretation of Computer Programs, 2e (3)', 'Structure and Interpretation of Computer P - Harold Abelson.pdf'), 
+    #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Mitsunori Ogihara/Theory and Applications of Models of Computation_ 8th Annual Conference, TAMC 2011, Tokyo, Japan (8)', 'Theory and Applications of Models of Compu - Mitsunori Ogihara.pdf'), 
+    #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Pierre Geurts/Supervised Larning with Decision Tree-based methods in Computational and Systems Biology (4)', 'Supervised Larning with Decision Tree-base - Pierre Geurts.pdf'), 
+    #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Roger Zelazny/Trumps of Doom (13)', 'Trumps of Doom - Roger Zelazny.pdf')]
+
+    path_to_library = "/Users/kbrooks/Documents/Book indexing project/Test Library"
+    extension = ".pdf"
+
+    library_list = locate_files(extension,path_to_library)
 
     for path, filename in library_list:
+        error_log = []
         full_path = os.path.join(path, filename)
         print full_path
-        #print path
-        analyze_title(full_path, filename)
+        try:
+            analyze_title(full_path, filename)
+        except NameError:
+            error_log.append((path, filename))
+        except UnicodeDecodeError:
+            error_log.append((path, filename))
+
+    print error_log
 
