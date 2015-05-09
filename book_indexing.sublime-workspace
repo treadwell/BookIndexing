@@ -4,24 +4,60 @@
 		"selected_items":
 		[
 			[
+				"path",
+				"path_to_library"
+			],
+			[
+				"title",
+				"title_path"
+			],
+			[
+				"cor",
+				"corpus_stopwords"
+			],
+			[
+				"file",
+				"filename"
+			],
+			[
+				"corpus",
+				"corpus_words"
+			],
+			[
+				"Crop",
+				"corpus_word_file"
+			],
+			[
+				"fil",
+				"filter_English_words"
+			],
+			[
+				"corpu",
+				"corpus_words"
+			],
+			[
+				"invalid",
+				"invalid_words"
+			],
+			[
+				"valid",
+				"valid_words"
+			],
+			[
+				"test",
+				"test_word_file"
+			],
+			[
+				"text",
+				"text_words"
+			],
+			[
 				"English",
 				"English_words"
 			],
 			[
 				"key",
 				"keyword_list"
-			],
-			[
-				"corpu",
-				"corpus_size"
-			],
-			[
-				"text",
-				"text_size"
-			],
-			[
-				"corpus",
-				"corpus_freq_dict"
 			],
 			[
 				"text_",
@@ -34,10 +70,6 @@
 			[
 				"corpus_",
 				"corpus_size"
-			],
-			[
-				"title",
-				"title_dict"
 			],
 			[
 				"stop",
@@ -482,38 +514,6 @@
 			[
 				"curre",
 				"current_year"
-			],
-			[
-				"backl",
-				"backlog"
-			],
-			[
-				"ship_ma",
-				"ship_MA10_dollars"
-			],
-			[
-				"hold",
-				"hold_dollars"
-			],
-			[
-				"fut",
-				"fut_dollars"
-			],
-			[
-				"unsche",
-				"unsched_dollars"
-			],
-			[
-				"week",
-				"week_num"
-			],
-			[
-				"weekly",
-				"weekly_groups"
-			],
-			[
-				"yt",
-				"ytd_2013_new_dollars"
 			]
 		]
 	},
@@ -523,23 +523,7 @@
 			"file": "Scripts/extract_words.py",
 			"settings":
 			{
-				"buffer_size": 5234,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Scripts/test_english.py",
-			"settings":
-			{
-				"buffer_size": 800,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "data/file_data.json",
-			"settings":
-			{
-				"buffer_size": 170028,
+				"buffer_size": 11216,
 				"line_ending": "Unix"
 			}
 		},
@@ -614,10 +598,14 @@
 	[
 		"/Users/kbrooks/Documents/Book indexing project",
 		"/Users/kbrooks/Documents/Book indexing project/data",
-		"/Users/kbrooks/Documents/Book indexing project/Scripts"
+		"/Users/kbrooks/Documents/Book indexing project/Scripts",
+		"/Users/kbrooks/Documents/Book indexing project/Test Library"
 	],
 	"file_history":
 	[
+		"/Users/kbrooks/Documents/Book indexing project/Scripts/FileSearch.py",
+		"/Users/kbrooks/Documents/Book indexing project/data/file_data.json",
+		"/Users/kbrooks/Documents/Book indexing project/Scripts/test_english.py",
 		"/Users/kbrooks/Documents/Book indexing project/Scripts/processing.py",
 		"/Users/kbrooks/Documents/Book indexing project/Scripts/corpus.py",
 		"/Users/kbrooks/Documents/Book indexing project/Scripts/extract_words.py",
@@ -742,9 +730,7 @@
 		"/Users/kbrooks/Documents/IPython Notebooks/11_30_13_inventory_planning.py",
 		"/Users/kbrooks/Documents/CSA Big Data Education/HW4/BKT-BruteForce/TestData.txt",
 		"/Users/kbrooks/Documents/IPython Notebooks/Move Files.ipynb",
-		"/Users/kbrooks/Documents/IPython Notebooks/Inventory_planning_10_19_13.py",
-		"/Users/kbrooks/Documents/90python/labs/90min.py",
-		"/Users/kbrooks/.ipython/profile_default/ipython_notebook_config.py"
+		"/Users/kbrooks/Documents/IPython Notebooks/Inventory_planning_10_19_13.py"
 	],
 	"find":
 	{
@@ -884,7 +870,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -893,15 +879,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5234,
+						"buffer_size": 11216,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2106,
-								2073
+								11053,
+								11053
 							]
 						],
 						"settings":
@@ -910,71 +896,15 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
-						"translation.y": 899.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Scripts/test_english.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 800,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								780,
-								780
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": -0.0,
-						"translation.y": 17.0,
+						"translation.x": 0.0,
+						"translation.y": 3175.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "data/file_data.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 170028,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								98852,
-								99269
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
-						},
-						"translation.x": -0.0,
-						"translation.y": 31569.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
+					"buffer": 1,
 					"file": "Scripts/corpus_processing.py",
 					"semi_transient": false,
 					"settings":
@@ -986,8 +916,8 @@
 						"selection":
 						[
 							[
-								116,
-								116
+								962,
+								936
 							]
 						],
 						"settings":
@@ -1000,11 +930,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 2,
 					"file": "Scripts/text_processing.py",
 					"semi_transient": false,
 					"settings":
@@ -1025,11 +955,11 @@
 							"syntax": "Packages/Python/Python.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
+						"translation.x": -0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1068,7 +998,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 275.0
+		"height": 236.0
 	},
 	"output.find_results":
 	{
