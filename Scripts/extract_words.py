@@ -84,19 +84,15 @@ def analyze_title(full_path, filename):
     text = nltk.Text(tokens)
 
     # - toLowerCase, trim
-    words = [w.lower() for w in text]
+    words = [w.lower() for w in text]           # lower case
+    words = [w for w in words if len(w)<=20]    # excessively long words
+    words = [w for w in words if len(w)>2]      # excessively short words
+    # words = [w for w in words if w.isalpha()] # numbers and punctuation
 
-    # - remove words with numbers
+    # - remove non-English words (until I have a bettr corpus)
 
-    words = [w for w in words if w.isalpha()]
-
-    # - remove non-English words (KEEP THIS OUT until I have a bettr corpus)
-
-    #  words, invalid_words = filter_English_words(words, corpus_words.words(), 10)
-
-    # - remove excessively long words
-
-    words = [w for w in words if len(w)<=20]
+    English_wordlist= json.load(open('../data/' + "English_wordlist" + '.json'))
+    words, invalid_words = filter_English_words(words, English_wordlist, 10)
 
     # - delete all non printable characters with a regex
     # - trim again
@@ -223,16 +219,17 @@ if __name__ == "__main__":
 
     library_list = locate_files(extension,path_to_library)
 
+    error_log = []
+
     for path, filename in library_list:
-        error_log = []
+        
         full_path = os.path.join(path, filename)
         print full_path
         try:
             analyze_title(full_path, filename)
-        except NameError:
-            error_log.append((path, filename))
-        except UnicodeDecodeError:
-            error_log.append((path, filename))
+        except Exception as ex:
+            error_log.append((str(ex), path, filename))
 
-    print error_log
+    for log in error_log:
+        print log[0], log[2]
 
