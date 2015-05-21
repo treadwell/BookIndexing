@@ -214,7 +214,7 @@ if __name__ == "__main__":
     #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Pierre Geurts/Supervised Larning with Decision Tree-based methods in Computational and Systems Biology (4)', 'Supervised Larning with Decision Tree-base - Pierre Geurts.pdf'), 
     #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Roger Zelazny/Trumps of Doom (13)', 'Trumps of Doom - Roger Zelazny.pdf')]
 
-    path_to_library = "/Users/kbrooks/Documents/Book indexing project/Test Library"
+    path_to_library = "/Users/kbrooks/Dropbox/Calibre Travel Library"
     extension = ".pdf"
 
     library_list = locate_files(extension,path_to_library)
