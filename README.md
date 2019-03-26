@@ -19,18 +19,26 @@ For now the file system is used...eventually Mongo?
 
 ### corpus_processing.py
 
+This module calculates the percent frequency of words in a the Brown corpus and dumps them to a json file.  The corpus data will be used in later processing.
+
 ### corpus_utilities.py
+
+This module creates a summary list of English words that will be used to remove unrecognized tokens in text extraction.
 
 ### extract_words.py
 
+This module extracts words from books and filters them against a list of recognized English words.  It also identifies the top 'n' unrecognized words for potential inclusion in the filter.
+
 ### text_processing.py
+
+This module extracts keywords for each title.
 
 ## Getting started
 
 ### Prerequisites
 1. [Python 2](https://www.python.org/download/releases/python-2715/) - The code uses ver 2.7.15
-2. [NLTK](https://www.sqlite.org/) - Natural Language Processing Library
-3. [pdfMiner](https://www.sqlalchemy.org) - Library for extracting text from PDFs.
+2. [NLTK](https://www.nltk.org/) - Natural Language Processing Library
+3. [pdfMiner](https://pypi.org/project/pdfminer/) - Library for extracting text from PDFs.
 4. [flask](http://flask.pocoo.org) - A web microframework
    for Python.
 
@@ -39,7 +47,7 @@ For now the file system is used...eventually Mongo?
  1. Download the latest version of Python from the link in Prerequisites.
  2. Install NLTK via `pip install nltk`.
  3. Install the Brown corpus via the python shell.
- 4. Install pdfMinder
+ 4. Install pdfMiner via `pip install pdfminer`.
  5. Clone this repository.
  6. Use command `python corpus_processing.py` to create the corpus json file.
 
