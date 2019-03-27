@@ -4,6 +4,8 @@ import extract_words
 
 
 def create_English_wordlist(textfile):
+	'''Creates an English word list from a text file.  Allows removal of words that shouldn't
+	bet in the file (removals) and addition of words that should be there (additions).'''
 
 	# f =  open('../data/' + textfile, 'w')
 
@@ -62,6 +64,7 @@ u'proceedings', u'components', u'caching']
 			)
 
 def update_English_wordlist(json_wordlist, addition_list):
+	'''Updates an existing wordlist file with new words gathered from looking at a corpus.'''
 
 	English_wordlist = json.load(open('../data/' + "English_wordlist.json"))
 
@@ -122,8 +125,8 @@ if __name__ == '__main__':
 
 	print len(json_wordlist)
 
-	addition_list = [ u'recognizes', u'computes', u'makes', u'questions', u'mit', 
-	u'etc', u'lookup', u'structures', u'korea', u'sapply', u'lines' ]
+	addition_list = [ u'add', u'new', u'words', u'here', 
+						u'mit', u'etc', u'lookup', u'structures', u'korea', u'sapply', u'lines' ]
 
 	update_English_wordlist(json_wordlist, addition_list)
 

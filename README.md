@@ -23,7 +23,14 @@ This module calculates the percent frequency of words in a the Brown corpus and 
 
 ### corpus_utilities.py
 
-This module creates a summary list of English words that will be used to remove unrecognized tokens in text extraction.
+This module contains two functions: 
+`create_English_wordlist(textfile)`: Creates an English word list from a text file that will be used to remove unrecognized tokens in text extraction.  It provides the capability of removing words that shouldn't be in the file (removals) and addition of words that should be there (additions).
+
+`update_English_wordlist(json_wordlist, addition_list)`: Updates an existing wordlist file with new words gathered from looking at a corpus.
+
+When the module is run via `python corpus_utilities.py`, it shows new words that are popular in the list of titles in the data directory and whether they are shown as valid or invalid in the current `English_wordlist.json` file. These can then be manually added by updating the list of additional words, `addition_list` at the bottom of the module and running  `python corpus_utilities.py` again.
+
+
 
 ### extract_words.py
 
@@ -65,6 +72,7 @@ This module extracts keywords for each title.
 
 * Change `path_to_library` variable (roughly line 217) to point to a folder of PDFs.
 * Use command `python extract_words.py` to build the corpus of new titles.
+* Use command `python text_processing.py` to create keywords for each of the titles.
 * Access the application on http://localhost:8000/ (eventually)
 
 ## Authors

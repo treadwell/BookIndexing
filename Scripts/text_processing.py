@@ -31,6 +31,8 @@ def find_ll_keywords(text_freq_dict, corpus_freq_dict):
 
 if __name__ == "__main__":
 
+	# for each of the title files in the data directory:  (I think...)
+
 	try:
 		text_file = json.load(open('../data/file_data.json'))
 		text_freq = text_file["freq"]
