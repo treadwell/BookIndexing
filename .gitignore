@@ -5,6 +5,8 @@
 *.jpg
 *.png
 *.json
+!English_worldlist.json # Exception
+!corpus_data.json # Exception
 *.sublime-project
 *.sublime-workspace
 *.pyc

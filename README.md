@@ -47,13 +47,24 @@ This module extracts keywords for each title.
  1. Download the latest version of Python from the link in Prerequisites.
  2. Install NLTK via `pip install nltk`.
  3. Install the Brown corpus via the python shell.
- 4. Install pdfMiner via `pip install pdfminer`.
- 5. Clone this repository.
- 6. Use command `python corpus_processing.py` to create the corpus json file.
+  ```
+  >>> import nltk
+  >>> nltk.download('brown')
+  ```
+ 4. Install the NLTK stopwords list via the python shell:
+  ```
+  >>> import nltk
+  >>> nltk.download('stopwords')
+  ```
+ 5. Install pdfMiner via `pip install pdfminer`.
+ 6. Clone this repository.
+ 7. Use command `python corpus_processing.py` to create the corpus json file.
+ 8. use command `python corpus_utilities.py` to ensure the English wordlist json file is present.
 
  ## Instructions
 
-* Use command `python xxx.py` to run the application...
+* Change `path_to_library` variable (roughly line 217) to point to a folder of PDFs.
+* Use command `python extract_words.py` to build the corpus of new titles.
 * Access the application on http://localhost:8000/ (eventually)
 
 ## Authors

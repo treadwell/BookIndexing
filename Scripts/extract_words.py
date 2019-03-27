@@ -57,7 +57,7 @@ def filter_English_words(test_word_file, corpus_word_file, number_invalid_words)
 
 def analyze_title(full_path, filename):
     try:
-        title_dict = json.load(open('../data/' + filename + '.json'))
+        title_dict = json.load(open('data/' + filename + '.json'))
         print "title_dict imported"
     except IOError:  # 
         print "No existing title dictionary, creating empty dictionary"
@@ -91,6 +91,8 @@ def analyze_title(full_path, filename):
 
     # - remove non-English words (until I have a bettr corpus)
 
+    print "Starting word filtering..."
+
     English_wordlist= json.load(open('../data/' + "English_wordlist" + '.json'))
     words, invalid_words = filter_English_words(words, English_wordlist, 10)
 
@@ -117,6 +119,7 @@ def analyze_title(full_path, filename):
 
     stopwords = set(corpus_stopwords.words('english')) ## O(1) instead of O(n)
 
+    print "stopword file created"
     # def word_filter(word):
     #     return (word.isalpha() and          # kill words with numbers
     #             len(word) <= 20 and         # kill excessively long words
@@ -156,7 +159,7 @@ def analyze_title(full_path, filename):
     print "Unique words", len(text_vocab), "\n"
     for w in tenMostCommon: print w
 
-
+    # data
     with open('../data/' + filename + '.json', 'w') as outfile:
         json.dump(title_dict, outfile, 
             sort_keys = True, 
@@ -214,7 +217,7 @@ if __name__ == "__main__":
     #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Pierre Geurts/Supervised Larning with Decision Tree-based methods in Computational and Systems Biology (4)', 'Supervised Larning with Decision Tree-base - Pierre Geurts.pdf'), 
     #                 ('/Users/kbrooks/Documents/Book indexing project/Test Library/Roger Zelazny/Trumps of Doom (13)', 'Trumps of Doom - Roger Zelazny.pdf')]
 
-    path_to_library = "/Users/kbrooks/Dropbox/Calibre Travel Library"
+    path_to_library = "/Users/kbrooks/Dropbox/Projects/BookIndexing/Test Library"
     extension = ".pdf"
 
     library_list = locate_files(extension,path_to_library)
