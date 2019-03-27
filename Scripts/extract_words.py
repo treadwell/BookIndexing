@@ -56,6 +56,7 @@ def filter_English_words(test_word_file, corpus_word_file, number_invalid_words)
     return valid_words, n_invalid_words
 
 def analyze_title(full_path, filename):
+    '''Provides basic NLP analysis of an extracted title.  Saves the result in a title.json file'''
     try:
         title_dict = json.load(open('data/' + filename + '.json'))
         print "title_dict imported"

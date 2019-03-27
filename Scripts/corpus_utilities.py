@@ -83,7 +83,7 @@ def update_English_wordlist(json_wordlist, addition_list):
 if __name__ == '__main__':
 
 
-	print "--------------------------------"
+	print("--------------------------------")
 
 	English_wordlist = json.load(open('../data/' + "English_wordlist.json"))
 
@@ -101,7 +101,7 @@ if __name__ == '__main__':
 
 	search_list.remove('../data/corpus_data.json')
 	search_list.remove('../data/English_wordlist.json')
-	print search_list
+	print(search_list)
 
 	to_be_added = []
 
@@ -110,29 +110,29 @@ if __name__ == '__main__':
 
 		test_book_words = test_book_dict["words"]
 
-		print "\nTest book words:", test_book_words[0:10]
+		print("\nTest book words:", test_book_words[0:10])
 
 		good_words, invalid_words = extract_words.filter_English_words(test_book_words, English_wordlist, 10)
 
-		print "good words:", good_words[0:10]
-		print "invalid words:", invalid_words[0:10]
+		print("good words:", good_words[0:10])
+		print("invalid words:", invalid_words[0:10])
 		to_be_added += invalid_words[0:20]
 
 	to_be_added = list(set(to_be_added))
-	print "\n", to_be_added
+	print("\n", to_be_added)
 
 	json_wordlist = json.load(open('../data/' + "English_wordlist.json"))
 
-	print len(json_wordlist)
+	print(len(json_wordlist))
 
-	addition_list = [ u'add', u'new', u'words', u'here', 
+	addition_list = [ u'add', u'new', u'words', u'here', u'test123',
 						u'mit', u'etc', u'lookup', u'structures', u'korea', u'sapply', u'lines' ]
 
 	update_English_wordlist(json_wordlist, addition_list)
 
 	new_json_wordlist = json.load(open('../data/' + "English_wordlist.json"))
 
-	print len(new_json_wordlist)
+	print(len(new_json_wordlist))
 
 
 

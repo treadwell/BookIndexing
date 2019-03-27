@@ -30,11 +30,19 @@ This module contains two functions:
 
 When the module is run via `python corpus_utilities.py`, it shows new words that are popular in the list of titles in the data directory and whether they are shown as valid or invalid in the current `English_wordlist.json` file. These can then be manually added by updating the list of additional words, `addition_list` at the bottom of the module and running  `python corpus_utilities.py` again.
 
-
-
 ### extract_words.py
 
 This module extracts words from books and filters them against a list of recognized English words.  It also identifies the top 'n' unrecognized words for potential inclusion in the filter.
+
+`convert_pdf_to_txt(full_path)`: Extracts text from a PDF.
+
+`filter_English_words(test_word_file, corpus_word_file, number_invalid_words)`: Filter a word file against a known corpus of English words.  Returns the valid words for further processing and the top n invalid words to determine how good the corpus_word_file is.  If it returns a high frequency of recognizable English words, a better corpus might be needed.  This return loop may be modified in the future to directly update the base English corpus.'''
+
+`analyze_title(full_path, filename)`: Provides basic NLP analysis of an extracted title.  Saves the result in a title.json file.
+
+`locate_files(extension, path_to_library)`: Finds all files with specified extension in a defined path and returns a list of tuples with paths and filenames.
+
+When the module is run via `python extract_words.py`, a specified directory (and subdirectories) is evaluated for PDFs. Each PDF is extracted, analyzed and the results stored in a title-specific json file containing words, word frequencies and word percentages.
 
 ### text_processing.py
 
@@ -65,8 +73,8 @@ This module extracts keywords for each title.
   ```
  5. Install pdfMiner via `pip install pdfminer`.
  6. Clone this repository.
- 7. Use command `python corpus_processing.py` to create the corpus json file.
- 8. use command `python corpus_utilities.py` to ensure the English wordlist json file is present.
+ 7. Use command `python corpus_processing.py` to create an initial corpus json file.
+ 8. Use command `python corpus_utilities.py` to ensure the English wordlist json file is present.
 
  ## Instructions
 
