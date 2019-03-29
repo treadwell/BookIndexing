@@ -23,8 +23,17 @@ Data is captured in json files on the file systems.
 
 `corpus_data.json`: JSON data with the following structure:
 ```
-{"categories": ["category1", "category2", ...], 
- "freq": ["word": frequency, ...]}
+{ 
+    "categories": [ 
+        "<category-1>", 
+        "<category-2>", 
+            ...
+    ], 
+    "freq": { 
+        "<word>": <frequency>,
+            ... 
+    }
+}
  ```
 
 ## Python Scripts
