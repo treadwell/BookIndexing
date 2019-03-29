@@ -11,9 +11,21 @@ The project uses the NLTK and PDFMiner libraries (among others) to extract data 
 ## Routes
 
 
-## Database
+## Data structures and database
 
-For now the file system is used...eventually Mongo?
+Data is captured in json files on the file systems.
+
+`title.json`:
+
+`English_wordlist.json`
+
+`words.txt`
+
+`corpus_data.json`: JSON data with the following structure:
+```
+{"categories": ["category1", "category2", ...], 
+ "freq": ["word": frequency, ...]}
+ ```
 
 ## Python Scripts
 
@@ -46,7 +58,7 @@ When the module is run via `python extract_words.py`, a specified directory (and
 
 ### text_processing.py
 
-This module extracts keywords for each title.
+This module extracts keywords for each title by comparing the word frequency within a title with the word frequency in a general corpus, `corpus_data.json`. This corpus is currently generated from the Brown data, but in the future this should be supplemented with other, and more modern sources. 
 
 ## Getting started
 

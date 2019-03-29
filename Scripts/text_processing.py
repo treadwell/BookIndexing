@@ -1,5 +1,6 @@
 import json
 import math
+import os
 
 
 def find_ll_keywords(text_freq_dict, corpus_freq_dict):
@@ -31,22 +32,51 @@ def find_ll_keywords(text_freq_dict, corpus_freq_dict):
 
 if __name__ == "__main__":
 
-	# for each of the title files in the data directory:  (I think...)
+	# Load the title json from /data
 
-	try:
-		text_file = json.load(open('../data/file_data.json'))
-		text_freq = text_file["freq"]
-		print type(text_freq)
-		print "title_dict imported"
-	except IOError:  # 
-		print "No existing title dictionary, execution halted"
+	print("--------------------------------")
 
-	try:
-		corpus_file = json.load(open('../data/corpus_data.json'))
-		corpus_freq = corpus_file['freq']
-		print type(corpus_freq)
-		print "corpus_data imported"
-	except IOError:  # 
-		print "No existing corpus dictionary, execution halted"
+	path_to_data = "../data"
 
-	print find_ll_keywords(text_freq, corpus_freq)
+	search_list = []
+
+	for root, dirs, files in os.walk(path_to_data):
+		for file in files:
+			if file.endswith(".json"):
+				#print root
+				#print file
+
+				search_list.append(os.path.join(path_to_data, file))
+
+	search_list.remove('../data/corpus_data.json')
+	search_list.remove('../data/English_wordlist.json')
+	# print(search_list)
+
+	print(search_list)
+
+	# pick the first one (to begin with, then do all of them)
+	for title in search_list:
+	
+		# run the following code
+		print(title)
+
+		try:
+			text_file = json.load(open(title))
+			text_freq = text_file["freq"]
+			# print type(text_freq)
+			print "title_dict imported"
+		except IOError:  # 
+			print "No existing title dictionary, execution halted"
+
+		try:
+			corpus_file = json.load(open('../data/corpus_data.json'))
+			corpus_freq = corpus_file['freq']
+			# print type(corpus_freq)
+			print "corpus_data imported"
+		except IOError:  # 
+			print "No existing corpus dictionary, execution halted"
+
+		# print the top 5 keywords for each title
+		print([word for word, a, b, G in find_ll_keywords(text_freq, corpus_freq)][0:5])
+
+		# when it looks good, update the title json with keywords
