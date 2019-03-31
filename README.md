@@ -13,13 +13,45 @@ The project uses the NLTK and PDFMiner libraries (among others) to extract data 
 
 ## Data structures and database
 
-Data is captured in json files on the file systems.
+Data is captured in the following files on the file system:
 
-`title.json`:
+`title.json`: Data on each title analyzed.
+```
+{
+    "extract": "<extracted text>", // one long string
+    "freq": {
+        "<word-1>": <count>, 
+        "<word-2>": <count>,
+            ...
+    },
+    "percent": {
+        "<word-1>": <percent>, 
+        "<word-2>": <percent>,
+            ...
+    },
+    "title": "<Book Title>", 
+    "vocab": [                       // sorted words in title
+        "<word-1>", 
+        "<word-2>",
+            ...
+    ],
+    "words": [                       // unsorted words in title
+        "<word-1>", 
+        "<word-2>",
+            ...
+    ]
+}
+```
 
-`English_wordlist.json`
+`English_wordlist.json`: A long list of valid English words
 
-`words.txt`
+[ 
+    "<word-1>", 
+    "<word-2>",
+        ...
+]
+
+`words.txt`: Starter list of English words separated by line breaks.
 
 `corpus_data.json`: JSON data with the following structure:
 ```
@@ -30,7 +62,7 @@ Data is captured in json files on the file systems.
             ...
     ], 
     "freq": { 
-        "<word>": <frequency>,
+        "<word>": <count>,
             ... 
     }
 }
@@ -40,7 +72,7 @@ Data is captured in json files on the file systems.
 
 ### corpus_processing.py
 
-This module calculates the percent frequency of words in a the Brown corpus and dumps them to a json file.  The corpus data will be used in later processing.
+This module calculates the percent frequency of words in the Brown corpus and dumps them to a json file.  The corpus data will be used in later processing.
 
 ### corpus_utilities.py
 
