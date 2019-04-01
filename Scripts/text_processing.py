@@ -64,19 +64,33 @@ if __name__ == "__main__":
 			text_file = json.load(open(title))
 			text_freq = text_file["freq"]
 			# print type(text_freq)
-			print "title_dict imported"
+			print("title_dict imported")
 		except IOError:  # 
-			print "No existing title dictionary, execution halted"
+			print("No existing title dictionary, execution halted")
 
 		try:
 			corpus_file = json.load(open('../data/corpus_data.json'))
 			corpus_freq = corpus_file['freq']
 			# print type(corpus_freq)
-			print "corpus_data imported"
+			print("corpus_data imported")
 		except IOError:  # 
-			print "No existing corpus dictionary, execution halted"
+			print("No existing corpus dictionary, execution halted")
 
 		# print the top 5 keywords for each title
-		print([word for word, a, b, G in find_ll_keywords(text_freq, corpus_freq)][0:5])
+
+		keywords = find_ll_keywords(text_freq, corpus_freq)
+
+		print([word for word, a, b, G in keywords][0:5])
 
 		# when it looks good, update the title json with keywords
+
+		text_file["keywords"] = keywords
+
+		print(text_file["keywords"][0:5])
+
+		with open(title, 'w') as outfile:
+			json.dump(text_file, outfile, 
+				sort_keys = True, 
+				indent = 4,
+				# ensure_ascii=False,
+				)

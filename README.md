@@ -39,17 +39,35 @@ Data is captured in the following files on the file system:
         "<word-1>", 
         "<word-2>",
             ...
+    ],
+    "keywords": [
+        [
+            "<word-1>", 
+            <text count>, 
+            <corpus count>, 
+            <G score>
+        ], 
+        [
+            "<word-2>", 
+            <text count>, 
+            <corpus count>, 
+            <G score>
+        ],
+            ...
     ]
+
 }
 ```
 
 `English_wordlist.json`: A long list of valid English words
 
+```
 [ 
     "<word-1>", 
     "<word-2>",
         ...
 ]
+```
 
 `words.txt`: Starter list of English words separated by line breaks.
 
